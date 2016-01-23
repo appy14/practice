@@ -121,4 +121,34 @@ public class LinkedListTest {
         assertFalse(LinkedList.deleteMidNode(n4));
         assertFalse(LinkedList.deleteMidNode(null));
     }
+
+    @Test
+    public void testAddTwoLinkedLists() {
+        LinkedListNode n1 = new LinkedListNode(4);
+        LinkedListNode n2 = new LinkedListNode(5);
+        LinkedListNode n3 = new LinkedListNode(6);
+
+        n1.next = n2;
+        n2.next = n3;
+
+        LinkedListNode n4 = new LinkedListNode(7);
+        LinkedListNode n5 = new LinkedListNode(8);
+        LinkedListNode n6 = new LinkedListNode(9);
+
+        n4.next = n5;
+        n5.next = n6;
+
+        LinkedListNode n = LinkedList.addTwoLinkedLists(n1, n4, 0);
+
+        assertEquals(1, n.data);
+        n = n.next;
+        assertEquals(4, n.data);
+        n = n.next;
+        assertEquals(6, n.data);
+        n = n.next;
+        assertEquals(1, n.data);
+        n = n.next;
+        assertEquals(null, n);
+
+    }
 }

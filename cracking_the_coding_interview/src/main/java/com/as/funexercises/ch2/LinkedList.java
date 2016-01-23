@@ -102,4 +102,31 @@ public class LinkedList {
         n.next = null;
         return true;
     }
+
+    // Ex 2.4
+    public static LinkedListNode addTwoLinkedLists(LinkedListNode n1,
+            LinkedListNode n2, int carry) {
+
+        if (n1 == null && n2 == null && carry == 0) {
+            return null;
+        }
+        int value = carry;
+
+        if (n1 != null) {
+            value += n1.data;
+        }
+
+        if (n2 != null) {
+            value += n2.data;
+        }
+
+        carry = value / 10;
+
+        LinkedListNode n = new LinkedListNode(value % 10);
+        n1 = (n1 == null) ? null : n1.next;
+        n2 = (n2 == null) ? null : n2.next;
+        n.next = addTwoLinkedLists(n1, n2, carry);
+
+        return n;
+    }
 }
