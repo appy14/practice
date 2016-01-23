@@ -4,6 +4,7 @@ import java.util.HashSet;
 
 public class LinkedList {
 	
+	// Assuming an unsorted list
 	public static LinkedListNode removeDuplicatesWithoutABuffer(LinkedListNode n) {
 		
 		// considering n as the head, singly linked list
@@ -34,6 +35,7 @@ public class LinkedList {
 		return n;
 	}
 	
+	// Assuming an unsorted list
 	public static LinkedListNode removeDuplicatesWithABuffer(LinkedListNode n) {
 		if (n == null || n.next == null) {
 			return n;
@@ -56,5 +58,32 @@ public class LinkedList {
 			current = current.next;
 		}
 		return n;
+	}
+	
+	public static LinkedListNode findNthLast(LinkedListNode head, int n) {
+		if (head == null || n < 0) {
+			return null;
+		}
+		
+		LinkedListNode current = head;
+		
+		LinkedListNode pointer = head;
+		
+		int count = 0;
+		
+		while (count++ < n && pointer != null) {
+			pointer = pointer.next;
+		}
+		
+		if (pointer == null) {
+			return null;
+		}
+		
+		while (pointer.next != null) {
+			current = current.next;
+			pointer = pointer.next;
+		}
+		
+		return current;
 	}
 }

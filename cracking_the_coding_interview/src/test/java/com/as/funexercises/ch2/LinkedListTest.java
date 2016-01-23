@@ -74,4 +74,27 @@ public class LinkedListTest {
 		// Pass null 
 		assertEquals(null, LinkedList.removeDuplicatesWithABuffer(null));
 	}
+	
+	@Test
+	public void testFindNthLast() {
+		LinkedListNode n1 = new LinkedListNode(10);
+		LinkedListNode n2 = new LinkedListNode(20);
+		LinkedListNode n3 = new LinkedListNode(10);
+		LinkedListNode n4 = new LinkedListNode(30);
+		LinkedListNode n5 = new LinkedListNode(20);
+		
+		n1.next = n2;
+		n2.next = n3;
+		n3.next = n4;
+		n4.next = n5;
+		
+		assertEquals(n5, LinkedList.findNthLast(n1, 0));
+		assertEquals(n4, LinkedList.findNthLast(n1, 1));
+		assertEquals(n3, LinkedList.findNthLast(n1, 2));
+		assertEquals(n2, LinkedList.findNthLast(n1, 3));
+		assertEquals(n1, LinkedList.findNthLast(n1, 4));
+		
+		assertEquals(null, LinkedList.findNthLast(n1, 5));
+		assertEquals(null, LinkedList.findNthLast(n1, -1));
+	}
 }

@@ -16,6 +16,6 @@ public class LinkedListNode {
 	
 	@Override
 	public String toString() {
-		return String.format("Data %d: ", data);
+		return String.format("Data: %d", data);
 	}
 }
