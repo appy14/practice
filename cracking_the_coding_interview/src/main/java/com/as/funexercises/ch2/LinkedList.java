@@ -129,4 +129,36 @@ public class LinkedList {
 
         return n;
     }
+
+    // Ex 2.5 - Finds circular loop beginning
+    public static LinkedListNode findTheBeginning(LinkedListNode head) {
+        if (head == null) {
+            return null;
+        }
+
+        LinkedListNode n1 = head;
+        LinkedListNode n2 = head;
+
+        while (n2 != null && n2.next != null) {
+            n1 = n1.next;
+            n2 = n2.next.next;
+
+            if (n1 == n2) {
+                break;
+            }
+        }
+
+        if (n2 == null || n2.next == null) {
+            return null;
+        }
+
+        n1 = head;
+
+        while (n1 != n2) {
+            n1 = n1.next;
+            n2 = n2.next;
+        }
+
+        return n2;
+    }
 }

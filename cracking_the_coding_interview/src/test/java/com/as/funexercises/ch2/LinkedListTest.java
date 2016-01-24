@@ -151,4 +151,30 @@ public class LinkedListTest {
         assertEquals(null, n);
 
     }
+
+    @Test
+    public void testFindTheBeginning() {
+        // Best case
+        LinkedListNode n1 = new LinkedListNode(10);
+        LinkedListNode n2 = new LinkedListNode(20);
+        LinkedListNode n3 = new LinkedListNode(30);
+        LinkedListNode n4 = new LinkedListNode(40);
+        LinkedListNode n5 = new LinkedListNode(50);
+        LinkedListNode n6 = new LinkedListNode(60);
+
+        n1.next = n2;
+        n2.next = n3;
+        n3.next = n4;
+        n4.next = n5;
+        n5.next = n6;
+        n6.next = n3;
+
+        assertEquals(n3, LinkedList.findTheBeginning(n1));
+
+        n6.next = n4;
+        assertEquals(n4, LinkedList.findTheBeginning(n1));
+
+        n6.next = null;
+        assertEquals(null, LinkedList.findTheBeginning(n1));
+    }
 }
