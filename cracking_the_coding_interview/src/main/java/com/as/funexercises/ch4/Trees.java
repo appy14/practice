@@ -2,6 +2,7 @@ package com.as.funexercises.ch4;
 
 public class Trees {
 
+    // Ex 4.1
     public static boolean isTreeBalanced(TreeNode root) {
         if (root == null) {
             throw new IllegalArgumentException(
@@ -30,21 +31,5 @@ public class Trees {
         node.height = Math.max(computeHeight(node.left),
                 computeHeight(node.right)) + 1;
         return node.height;
-    }
-
-    public static void main(String[] args) {
-        TreeNode root = new TreeNode(10);
-        TreeNode n1 = new TreeNode(20);
-        TreeNode n2 = new TreeNode(30);
-        root.left = n1;
-        root.right = n2;
-
-        TreeNode n3 = new TreeNode(40);
-        n1.left = n3;
-
-        TreeNode n4 = new TreeNode(50);
-        n3.left = n4;
-
-        System.out.println(isTreeBalanced(root));
     }
 }
