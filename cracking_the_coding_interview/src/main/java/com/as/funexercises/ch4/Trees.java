@@ -1,5 +1,9 @@
 package com.as.funexercises.ch4;
 
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
+
 public class Trees {
 
     // Ex 4.1
@@ -33,6 +37,7 @@ public class Trees {
         return node.height;
     }
 
+    // Ex 4.3
     public static TreeNode createTree(int[] a) {
         if (a.length == 0) {
             throw new IllegalArgumentException();
@@ -50,5 +55,29 @@ public class Trees {
         node.left = createAndUpdateNodes(a, start, mid - 1);
         node.right = createAndUpdateNodes(a, mid + 1, end);
         return node;
+    }
+
+    public static List<List<TreeNode>> createListAtEachDepth(TreeNode root) {
+        if (root == null) {
+            throw new IllegalArgumentException();
+        }
+
+        List<List<TreeNode>> list = new ArrayList<List<TreeNode>>();
+        addToList(root, 0, list);
+        return list;
+    }
+
+    private static void addToList(TreeNode node, int index,
+            List<List<TreeNode>> list) {
+        if (node == null) {
+            return;
+        }
+        if (index >= list.size()) {
+            list.add(index, new LinkedList<TreeNode>());
+        }
+
+        list.get(index).add(node);
+        addToList(node.left, index + 1, list);
+        addToList(node.right, index + 1, list);
     }
 }

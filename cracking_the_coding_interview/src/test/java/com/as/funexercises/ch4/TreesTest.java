@@ -7,6 +7,8 @@ import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
+import java.util.List;
+
 import org.junit.Test;
 
 public class TreesTest {
@@ -125,5 +127,39 @@ public class TreesTest {
         assertEquals(8, n1.right.data);
 
         assertTrue(Trees.isTreeBalanced(root));
+    }
+
+    @Test
+    public void testCreateListAtEachDepth() {
+        TreeNode n1 = new TreeNode(4);
+        TreeNode n2 = new TreeNode(2);
+        TreeNode n3 = new TreeNode(6);
+        n1.left = n2;
+        n1.right = n3;
+
+        TreeNode n4 = new TreeNode(1);
+        TreeNode n5 = new TreeNode(3);
+        n2.left = n4;
+        n2.right = n5;
+
+        TreeNode n6 = new TreeNode(5);
+        TreeNode n7 = new TreeNode(7);
+        n3.left = n6;
+        n3.right = n7;
+
+        List<List<TreeNode>> list = Trees.createListAtEachDepth(n1);
+        assertNotNull(list);
+        assertEquals(3, list.size());
+        assertEquals(1, list.get(0).size());
+        assertEquals(2, list.get(1).size());
+        assertEquals(4, list.get(2).size());
+
+        assertEquals(n1, list.get(0).get(0));
+        assertEquals(n2, list.get(1).get(0));
+        assertEquals(n3, list.get(1).get(1));
+        assertEquals(n4, list.get(2).get(0));
+        assertEquals(n5, list.get(2).get(1));
+        assertEquals(n6, list.get(2).get(2));
+        assertEquals(n7, list.get(2).get(3));
     }
 }
