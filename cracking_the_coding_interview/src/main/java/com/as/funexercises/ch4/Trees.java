@@ -32,4 +32,23 @@ public class Trees {
                 computeHeight(node.right)) + 1;
         return node.height;
     }
+
+    public static TreeNode createTree(int[] a) {
+        if (a.length == 0) {
+            throw new IllegalArgumentException();
+        }
+
+        return createAndUpdateNodes(a, 0, a.length - 1);
+    }
+
+    private static TreeNode createAndUpdateNodes(int[] a, int start, int end) {
+        if (start > end) {
+            return null;
+        }
+        int mid = (start + end) / 2;
+        TreeNode node = new TreeNode(a[mid]);
+        node.left = createAndUpdateNodes(a, start, mid - 1);
+        node.right = createAndUpdateNodes(a, mid + 1, end);
+        return node;
+    }
 }
