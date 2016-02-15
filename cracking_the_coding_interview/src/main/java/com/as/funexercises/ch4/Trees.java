@@ -57,6 +57,7 @@ public class Trees {
         return node;
     }
 
+    // Ex 4.4
     public static List<List<TreeNode>> createListAtEachDepth(TreeNode root) {
         if (root == null) {
             throw new IllegalArgumentException();
@@ -79,5 +80,37 @@ public class Trees {
         list.get(index).add(node);
         addToList(node.left, index + 1, list);
         addToList(node.right, index + 1, list);
+    }
+
+    public static TreeNode findNext(TreeNodeWithParent node) {
+        if (node == null) {
+            return null;
+        }
+
+        if (node.right != null) {
+            return findLeftMost(node.right);
+        }
+
+        if (node.parent != null) {
+            TreeNodeWithParent p = node;
+            while (p.parent != null) {
+                if (p.parent.left == p) {
+                    return p.parent;
+                }
+                p = p.parent;
+            }
+        }
+
+        return null;
+    }
+
+    private static TreeNode findLeftMost(TreeNode node) {
+        if (node == null) {
+            return null;
+        }
+        while (node.left != null) {
+            node = node.left;
+        }
+        return node;
     }
 }

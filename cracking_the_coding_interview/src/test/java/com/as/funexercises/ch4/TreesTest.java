@@ -162,4 +162,32 @@ public class TreesTest {
         assertEquals(n6, list.get(2).get(2));
         assertEquals(n7, list.get(2).get(3));
     }
+
+    @Test
+    public void testFindNext() {
+        TreeNodeWithParent n1 = new TreeNodeWithParent(1);
+        TreeNodeWithParent n2 = new TreeNodeWithParent(2);
+        TreeNodeWithParent n3 = new TreeNodeWithParent(3);
+
+        n1.left = n2;
+        n1.right = n3;
+        n2.parent = n1;
+        n3.parent = n1;
+
+        TreeNodeWithParent n4 = new TreeNodeWithParent(4);
+        n2.left = n4;
+        n4.parent = n2;
+
+        TreeNodeWithParent n5 = new TreeNodeWithParent(5);
+        n2.right = n5;
+        n5.parent = n2;
+
+        TreeNodeWithParent n6 = new TreeNodeWithParent(6);
+        n5.left = n6;
+        n6.parent = n5;
+
+        assertEquals(n2, Trees.findNext(n4));
+        assertEquals(n1, Trees.findNext(n5));
+        assertEquals(n6, Trees.findNext(n2));
+    }
 }
